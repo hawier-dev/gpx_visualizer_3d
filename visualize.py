@@ -17,6 +17,9 @@ parser.add_argument(
 parser.add_argument(
     "-l", "--path_las", type=str, help="Path to .las file", required=True
 )
+parser.add_argument(
+    "-c", "--color", type=str, help="Color of the gpx track", default="255 0 0"
+)
 args = parser.parse_args()
 
 
@@ -32,6 +35,8 @@ if not os.path.exists(temp_folder):
 
 # Convert las to xyzrgb format
 las_file = laspy.read(args.path_las)
+
+gpx_color = [int(c) for c in args.color.split(" ")]
 
 points_las = np.dstack(
     [
@@ -62,7 +67,9 @@ for track in gpx.tracks:
                 point.latitude, point.longitude, point.elevation
             )
             points_gpx[0].append([x, y, z + 20])
-            points_colors_gpx[0].append([1.0, 0.0, 0.0])
+            points_colors_gpx[0].append(
+                [gpx_color[0] / 255, gpx_color[1] / 255, gpx_color[2] / 255]
+            )
 
 points_las = np.column_stack((points_las, points_gpx))
 points_colors_las = np.column_stack((points_colors_las, points_colors_gpx))
