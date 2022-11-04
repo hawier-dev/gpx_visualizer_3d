@@ -27,12 +27,6 @@ file_name_no_ext = basename(args.path_gpx).replace(
     "." + args.path_gpx.split(".")[-1], ""
 )
 
-# Create temp directory
-temp_folder = "temp"
-if not os.path.exists(temp_folder):
-    os.mkdir(temp_folder)
-
-
 # Convert las to xyzrgb format
 las_file = laspy.read(args.path_las)
 
