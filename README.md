@@ -21,6 +21,7 @@ Available command line arguments:
 | --top       | The value by which to increase Z. In some cases, <br/> it should increase visibility of the track on the <br/> `.las` file | 0         |
 
 ```shell
+pip install -r requirements.txt
 python visualize.py --path_gpx {PATH_TO_GPX} --path_las {PATH_TO_LAS_FILE} --color "r g b" --top 0
 ```
 
