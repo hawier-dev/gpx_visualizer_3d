@@ -17,6 +17,9 @@ parser.add_argument(
     "-l", "--path_las", type=str, help="Path to .las file", default=None
 )
 parser.add_argument(
+    "-p", "--las_proj", type=str, help="Las projection", default="EPSG:2180"
+)
+parser.add_argument(
     "-c", "--color", type=str, help="Color of the gpx track", default="255 0 0"
 )
 parser.add_argument("-t", "--top", type=int, help="Value to increase Z", default=0)
@@ -59,7 +62,7 @@ points_colors_gpx = [[]]
 for track in gpx.tracks:
     for segment in track.segments:
         for point in segment.points:
-            transformer = Transformer.from_crs("EPSG:4326", "EPSG:2180")
+            transformer = Transformer.from_crs("EPSG:4326", args.las_proj)
             y, x, z = transformer.transform(
                 point.latitude, point.longitude, point.elevation
             )
