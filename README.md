@@ -23,6 +23,6 @@ Available command line arguments:
 
 ```shell
 pip install -r requirements.txt
-python visualize.py --path_gpx {PATH_TO_GPX} --path_las {PATH_TO_LAS_FILE} --color "r g b" --top 0
+python visualize.py --path_gpx {PATH_TO_GPX} --path_las {PATH_TO_LAS_FILE} --las_proj "EPSG:2180" --color "r g b" --top 0
 ```
 
